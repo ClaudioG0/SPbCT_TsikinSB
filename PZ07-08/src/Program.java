@@ -2,28 +2,27 @@ public class Program{
 
     public static void main(String[] args) {
 
-        Calculatable c = new Calculation();
-        System.out.println(c.sum(1, 2));
-        System.out.println(c.sum(1, 2, 4));
+        Book b1 = new Book("Java. Complete Referense.", "H. Shildt");
+        b1.print();
     }
 }
-class Calculation implements Calculatable{
+interface Printable{
 
+    void print();
 }
-interface Calculatable{
+class Book implements Printable{
 
-    default int sum(int a, int b){
-        return sumAll(a, b);
-    }
-    default int sum(int a, int b, int c){
-        return sumAll(a, b, c);
+    String name;
+    String author;
+
+    Book(String name, String author){
+
+        this.name = name;
+        this.author = author;
     }
 
-    private int sumAll(int... values){
-        int result = 0;
-        for(int n : values){
-            result += n;
-        }
-        return result;
+    public void print() {
+
+        System.out.printf("%s (%s) \n", name, author);
     }
 }
